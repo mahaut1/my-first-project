@@ -1,1 +1,17 @@
 <p>article works!</p>
+<div class="card articleInfo">
+    <img [src]="urlImg" [alt]="textAltImg">
+    <div class="card-body">
+        <h5 class="card-title"  [ngStyle]="{ color: getColor() }">
+            {{ titreArticle }}
+            <span ngIf="dispo ===false;"> -Indisponible </span>
+        </h5>
+        <h6 class="card-title">{{ prixArticle }} €</h6>
+        <p class="card-text">Une description</p>
+
+        <button class="btn btn-primary" (click)="onLike()">J'aime</button>
+        <p> Nombre de like : {{totalNbrLike }}</p>
+        <input type="text" placeholder="Ecris ton commentaire" [(ngModel)]="comment">
+        <p>COMMENTAIRE : {{ comment }}</p>
+    </div>
+</div>
