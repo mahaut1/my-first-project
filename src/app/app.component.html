@@ -15,9 +15,19 @@
     </div>
   </div>
 </nav>
+
+
 <!-- Contenu -->
-<div id="home" class="container">
-  <app-article></app-article>
+<div class="container">
+  <div id="alertMsg">
+    <p>
+      {{ message }}
+    </p>
+  </div>
+  <div id="home">
+    <app-article *ngFor="let element of liste" [titreArticle]="element.titreArticle" [prixArticle]="element.prixArticle"
+    [description]="element.description" [urlImg]="element.urlImg" [textAltImg]="element.textAltImg"
+    [dispo]="element.dispo" (info)="onAffiche($event)"></app-article>
 </div>
 <!-- Pied de page -->
 <footer class="py-5 bg-dark">
