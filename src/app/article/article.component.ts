@@ -17,7 +17,7 @@ export class ArticleComponent implements OnInit {
   @Input() urlImg: string;
   @Input() textAltImg: string;
   @Input() dispo: boolean;
-
+  @Input() idArticle: number;
   jaime: boolean = true;
 
   constructor(){}
