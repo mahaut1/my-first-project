@@ -1,22 +1,35 @@
-import { Component,OnInit } from '@angular/core';
-import { DataService } from './data.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit, OnDestroy {
+  secondes;
+  compteurSubscription: Subscription;
+  constructor() { }
 
-  message:string="";
-  liste;
-  constructor(private dataService:DataService){}
+  ngOnInit() {
+    const compteur = interval(1000).pipe(
+      filter(value => value % 2 === 0),
+      map(value => value % 2 === 0 ?
+        `${value} est pair` :
+        `${value} est impair`
+      )
+    );
 
-  ngOnInit(){
-    this.liste=this.dataService.listeArticles
+    this.compteurSubscription = compteur.subscribe({
+      next: (v) => this.secondes = v,
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    })
   }
-  onAffiche(arg: string) {
-    return this.message = "Merci d'avoir voté pour l'article : " + arg;
+
+  ngOnDestroy() {
+    this.compteurSubscription.unsubscribe();
   }
-  
+
 }
-

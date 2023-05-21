@@ -1,13 +1,14 @@
-import { Component,OnInit,Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
+
 export class ArticleComponent implements OnInit {
-  
-  totalNbrLike: number=0;
+
+  totalNbrLike: number = 0;
   comment: string = "Ceci est un commentaire";
   @Output() info = new EventEmitter<string>();
 
@@ -20,11 +21,12 @@ export class ArticleComponent implements OnInit {
   @Input() idArticle: number;
   jaime: boolean = true;
 
-  constructor(){}
+  constructor() { }
+
   ngOnInit(): void {
-      
   }
-  onLike(){
+
+  onLike() {
     if (this.jaime === true) {
       this.totalNbrLike++;
       this.jaime = false;
@@ -34,6 +36,7 @@ export class ArticleComponent implements OnInit {
     }
     this.info.emit(this.titreArticle);
   }
+
   getColor() {
     if (this.dispo === true) {
       return "green"

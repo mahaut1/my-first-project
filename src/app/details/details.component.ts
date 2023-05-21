@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 
@@ -13,12 +13,13 @@ export class DetailsComponent implements OnInit {
   prix: number;
   description: string;
   urlImg: string;
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     const id = this.route.snapshot.params["id"];
     this.id = id;
     this.titre = this.dataService.getArticle(id).titreArticle;
@@ -26,4 +27,5 @@ export class DetailsComponent implements OnInit {
     this.description = this.dataService.getArticle(id).description;
     this.urlImg = this.dataService.getArticle(id).urlImg;
   }
+
 }
